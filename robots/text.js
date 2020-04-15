@@ -13,12 +13,18 @@ const nlu = new NaturalLanguageUnderstandingV1({
     "https://gateway-lon.watsonplatform.net/natural-language-understanding/api/v1/analyze?"
 });
 
+const state = require('./state.js')
+
 async function robot(content) {
+  content = state.load()
+
   await fetchContentFromWikipedia(content),
     sanitizeContent(content),
     breakContentIntoSentence(content),
     limitMaximumSentences(content),
     await fetchKeyWordsOffAllSentences(content)
+
+    state.save(content)
 
   async function fetchContentFromWikipedia(content) {
     const input = {
