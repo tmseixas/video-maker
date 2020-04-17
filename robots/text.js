@@ -29,7 +29,7 @@ async function robot(content) {
   async function fetchContentFromWikipedia(content) {
     const input = {
       articleName: content.searchTerm,
-      lang: "pt"
+      lang: "en"
     };
 
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey);
@@ -78,7 +78,7 @@ async function robot(content) {
     sentences.forEach(sentence => {
       content.sentences.push({
         text: sentence,
-        kewords: [],
+        keywords: [],
         images: []
       });
     });
